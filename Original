@@ -1,0 +1,135 @@
+def cs_service_bot():
+        print("Hello! Welcome to the DNS Cable Company's Service Portal. Are you a new or existing customer? \n[1] New Customer \n[2] Existing Customer")
+        response_main_menu = input("Please enter the number corresponding to your choice:")
+        if response_main_menu == "1":
+            new_customer()
+        elif response_main_menu == "2":
+            existing_customer()
+        else:
+            print("Sorry, we didn't understand your choice. Please select 1 or 2")
+            cs_service_bot()
+def existing_customer():
+    print("What kind of support do you need?\n[1] Television Support\n[2] Internet Support\n[3] Speak to support representative.")
+    response_exist_cust = input("What kind of support may we help you with?")
+    if response_exist_cust == "1":
+        television_support()
+    elif response_exist_cust == "2":
+        internet_support()
+    elif response_exist_cust == "3":
+        live_rep("Support")
+    else:
+        print("Sorry, we didn't understand your choice. Please select 1, 2 or 3.")
+        existing_customer()       
+def new_customer():
+    print("We're excited to have you join the DNS family, how can we help you?\n[1] Sign-up\n[2] Schedule a home visit\n[3] Speak to a sales representative.")
+    response_new_cust = input("Please choose an option so we may help you - ")
+    if response_new_cust == "1":
+        sign_up()
+    elif response_new_cust == "2":
+        home_visit()
+    elif response_new_cust == "3":
+        live_rep("Sales")
+    else:
+        print("Sorry, we didn't understand your choice. Please select 1, 2 or 3.")
+        new_customer()
+def television_support():
+    print("What is the nature of the issue faced?\n[1] I can't access certain channels.\n[2] My picture is blurry.\n[3] I keep losing service.\n[4] Other issues.")
+    response_TV_support = input("Please help us identify the issue by choosing the appropriate option.")    
+    if response_TV_support == "1":
+        print("Please check the channel lists at DefinitelyNotSinister.com. If the channel you cannot access is there, please contact a live representative.")
+        did_that_help()
+    elif response_TV_support == "2":
+        print("Try adjusting the antenna above your television set.")
+        did_that_help()
+    elif response_TV_support == "3":
+        print("Is it raining outside? If so, wait until it is not raining and then try again.")
+        did_that_help()
+    elif response_TV_support == "4":
+        live_rep("Support")
+    else:
+        print("Sorry, we didn't understand your choice. Please select 1, 2, 3 or 4.")
+        television_support()
+def internet_support():
+    print("What is the nature of the issue faced?\n[1] I can't connect to the internet.\n[2] My connection is very slow.\n[3] I can't access certain sites.\n[4] Other issues.")
+    response_internet_support = input("Please help us identify the issue by choosing the appropriate option.")
+    if response_internet_support == "1":
+        print("Unplug your router, then plug it back in, then give it a good whack, like the Fonz.")
+        did_that_help()
+    elif response_internet_support == "2":
+        print("Make sure that all cell phones and other peoples computers are not connected to the internet, so that you can have all the bandwidth.")
+        did_that_help()
+    elif response_internet_support == "3":
+        print("Move to a different region or install a VPN. Some areas block certain sites.")
+        did_that_help()
+    elif response_internet_support == "4":
+        live_rep("Support")
+    else:
+        print("Sorry, we didn't understand your choice. Please select 1, 2, 3 or 4.")
+        internet_support()
+def did_that_help():
+    print("Were we able to resolve your issue? Please type Y for Yes and N for No below:")
+    response_did_that_help = input("Please type Y for Yes and N for No - ")
+    if response_did_that_help == "Y" or response_did_that_help == "Yes":
+        print("Thank you for using DefinitelyNotSinister (DNS) Cable company and we are glad to be of help....anytime")
+    elif response_did_that_help == "N" or response_did_that_help == "No":
+        print("Would you like to speak to a Support representative or schedule a home visit? Type 1 for Live Support and 2 to schedule a home visit")
+        response_did_not_help = input("[1] To speak to a Support Representative\n[2] To schedule a home visit")
+        if response_did_not_help == "1":
+            live_rep("Support")
+        elif response_did_not_help == "2":
+            home_visit("Support")
+        else:
+            print("Sorry, we didn't understand your choice. - ")
+            did_that_help()
+    else:
+        print("Sorry, we didn't understand your choice.")
+        did_that_help()
+def sign_up():
+    print("Great choice, friend! We're excited to have you join the DNS family! Please select the package you are interested in signing up for.\n[1] Bundle Deal (Internet + Cable)\n[2] Internet\n[3] Cable")
+    response_sign_up = input("Please choose option 1, 2 or 3 - ")
+    if response_sign_up == "1":
+        print("You've selected the Bundle Package! Please schedule a home visit and our technician will come and set up your new service.")
+        home_visit("New Install")
+    elif response_sign_up == "2":
+        print("You've selected the Internet Only Package! Please schedule a home visit and our technician will come and set up your new service.")
+        home_visit("New Install")
+    elif response_sign_up == "3":
+        print("You've selected the Cable Only Package! Please schedule a home visit and our technician will come and set up your new service.")
+        home_visit("New Install")
+    else:
+        print("Sorry, we didn't understand your choice. - ")
+        sign_up()
+def home_visit(purpose="none"):
+    if purpose == "none":
+        print("What is the purpose of your home visit? \n [1] New service installation. \n [2] Existing service repair. \n [3] Location scouting for unserviced regions.")
+        response = input("Please enter the number corresponding to your choice: ")
+        if response == "1":
+            home_visit("new install")
+        elif response == "2":
+            home_visit("service")
+        elif response == "3":
+            home_visit("scout")
+        else:
+            print("Sorry, we didn't understand your selection.")
+            home_visit()
+    if purpose == "new install":
+        print("Please enter a date below when you are available for a technician to come to your home and install your new service.")
+        visit_date = input("Date:")
+        print("Wonderful! A technical will come visit you on " + visit_date + ". Please be available between the hours of 1:00 am and 11:00 pm." )
+        return visit_date
+    if purpose == "service":
+        print("Please enter a date below when you are available for a technician to come and inspect the problem:")
+        visit_date = input("Date:")
+        print("Wonderful! A technical will come visit you on " + visit_date + ". Please be available between the hours of 1:00 am and 11:00 pm." )
+        return visit_date
+    if purpose == "scout":
+        print("Please enter a date below when you are available for a technician to come scout your region for expansion:")
+        visit_date = input("Date:")
+        print("Wonderful! A technical will come visit you on " + visit_date + ". Please be available between the hours of 1:00 am and 11:00 pm." )
+        return visit_date
+def live_rep(purpose):
+    if purpose == "Sales":
+        print("Please hold while we connect you with a live sales representative. The wait time will be between two minutes and six hours. We thank you for your patience.")
+    elif purpose == "Support":
+        print("Please hold while we connect you with a live sales representative. The wait time will be between two minutes and six hours. We thank you for your patience.")
+cs_service_bot()
